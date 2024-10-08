@@ -17,19 +17,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && rm -rf /var/lib/apt/lists/*
 
 # Extract package to client
-RUN wget -O temp.tar.gz ${URL} --no-check-certificate \
-    && tar -xzf temp.tar.gz \
-    && chmod 755 /setup
-
-RUN cp include/* /setup/usr/include/
-
-RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-    cp lib/x64/libMVSDK.so /setup/lib/; \
-    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-    cp lib/arm64/libMVSDK.so /setup/lib/; \
-    else exit 1; fi
-
-RUN cp *-mvusb.rules /setup/etc/udev/rules.d/
+RUN wget -O temp.tar.gz ${URL} --no-check-certificate
 
 # Use busybox as container
 FROM busybox:latest
