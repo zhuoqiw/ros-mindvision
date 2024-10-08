@@ -19,37 +19,27 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # Extract package to client
 RUN wget -O temp.tar.gz ${URL} --no-check-certificate
 
-RUN pwd
-
+# Extract tar.gz
 RUN tar -xzf temp.tar.gz
 
+# Copy header
 RUN cp include/* /setup/usr/include/
 
+# Copy so
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
     cp lib/x64/libMVSDK.so /setup/lib/; \
     elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
     cp lib/arm64/libMVSDK.so /setup/lib/; \
     else exit 1; fi
 
+# Copy rules
 RUN cp *-mvusb.rules /setup/etc/udev/rules.d/
-
-RUN ls -l /setup/usr/include
-
-RUN ls -l /setup/lib
-
-RUN ls -l /setup/etc/udev/rules.d
 
 # Use busybox as container
 FROM busybox:latest
 
 # Copy
 COPY --from=build /setup/ /setup/
-
-RUN ls -l /setup/usr/include
-
-RUN ls -l /setup/lib
-
-RUN ls -l /setup/etc/udev/rules.d
 
 # Mount point for image users to install udev rules, etc.
 VOLUME [ "/setup" ]
