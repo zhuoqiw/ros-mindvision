@@ -40,7 +40,7 @@ RUN ls -l /setup/lib
 RUN ls -l /setup/etc/udev/rules.d
 
 # Use busybox as container
-FROM ubuntu:latest
+FROM busybox:latest
 
 # Copy
 COPY --from=build /setup/ /setup/
