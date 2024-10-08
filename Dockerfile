@@ -21,6 +21,16 @@ RUN wget -O temp.tar.gz ${URL} --no-check-certificate
 
 RUN tar -xzf temp.tar.gz
 
+RUN cp include/* /setup/usr/include/
+
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+    cp lib/x64/libMVSDK.so /setup/lib/; \
+    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+    cp lib/arm64/libMVSDK.so /setup/lib/; \
+    else exit 1; fi
+
+RUN cp *-mvusb.rules /setup/etc/udev/rules.d/
+
 # Use busybox as container
 FROM busybox:latest
 
