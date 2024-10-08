@@ -34,3 +34,5 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:latest
             ${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:2.1.0.37
+            cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:buildcache
+            cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:buildcache,mode=max
