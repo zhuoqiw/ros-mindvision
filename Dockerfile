@@ -37,7 +37,7 @@ RUN cp *-mvusb.rules /setup/etc/udev/rules.d/
 FROM busybox:latest
 
 # Copy
-COPY --from=base /setup /
+COPY --from=base /setup/* /setup/
 
 # Mount point for image users to install udev rules, etc.
 VOLUME [ "/setup" ]
