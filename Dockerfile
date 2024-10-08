@@ -32,10 +32,10 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
 RUN cp *-mvusb.rules /setup/etc/udev/rules.d/
 
 # Use busybox as container
-FROM busybox:latest
+#FROM busybox:latest
 
 # Copy
-COPY --from=base /setup /setup
+#COPY --from=base /setup /setup
 
 # Mount point for image users to install udev rules, etc.
-VOLUME [ "/setup" ]
+#VOLUME [ "/setup" ]
