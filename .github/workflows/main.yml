@@ -29,9 +29,7 @@ jobs:
         with:
           build-args: DOCKER_HUB_USER_NAME=${{ secrets.DOCKER_HUB_USER_NAME }}
           platforms: linux/amd64
-          target: final
           push: true
-          no-cache: true
           tags: |
             ${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:latest
             ${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:2.1.0.37
