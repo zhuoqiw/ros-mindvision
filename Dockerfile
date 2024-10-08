@@ -19,6 +19,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # Extract package to client
 RUN wget -O temp.tar.gz ${URL} --no-check-certificate
 
+RUN tar -xzf temp.tar.gz
+
 # Use busybox as container
 FROM busybox:latest
 
