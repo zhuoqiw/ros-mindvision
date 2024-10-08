@@ -1,5 +1,5 @@
 # Extract pylon
-FROM ubuntu:latest AS base
+FROM ubuntu:latest AS build
 
 # linux/amd64 or linux/arm64
 ARG TARGETPLATFORM
@@ -37,7 +37,7 @@ RUN cp *-mvusb.rules /setup/etc/udev/rules.d/
 FROM busybox:latest
 
 # Copy
-COPY --from=base setup /setup/
+COPY --from=build /setup /setup/
 
 # Mount point for image users to install udev rules, etc.
 VOLUME [ "/setup" ]
