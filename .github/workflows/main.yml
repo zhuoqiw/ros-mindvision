@@ -28,11 +28,20 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           build-args: DOCKER_HUB_USER_NAME=${{ secrets.DOCKER_HUB_USER_NAME }}
-          context: .
           platforms: linux/amd64
+          target: build
           push: true
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:latest
+          tags: ${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:build
+          cache-from: ${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:build
           cache-to: type=inline
+      -
+        name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          build-args: DOCKER_HUB_USER_NAME=${{ secrets.DOCKER_HUB_USER_NAME }}
+          platforms: linux/amd64
+          target: final
+          push: true
           tags: |
             ${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:latest
             ${{ secrets.DOCKER_HUB_USER_NAME }}/ros-mindvision:2.1.0.37

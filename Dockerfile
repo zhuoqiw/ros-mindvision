@@ -34,7 +34,7 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
 RUN cp *-mvusb.rules /setup/etc/udev/rules.d/
 
 # Use busybox as container
-FROM busybox:latest
+FROM busybox:latest AS final
 
 # Copy
 COPY --from=build /setup/ /setup/
