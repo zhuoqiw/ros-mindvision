@@ -10,17 +10,20 @@ ARG URL=https://www.mindvision.com.cn/wp-content/uploads/2023/08/linuxSDK_V2.1.0
 # Prepare install directories
 RUN mkdir -p /setup/usr/include /setup/lib /setup/etc/udev/rules.d
 
+RUN touch test
+RUN cp test abc
+
 # Install dependencies
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#    && apt-get -y install --no-install-recommends \
+#    wget \
+#    && rm -rf /var/lib/apt/lists/*
 
 # Extract package to client
-RUN wget -O temp.tar.gz ${URL} --no-check-certificate
+#RUN wget -O temp.tar.gz ${URL} --no-check-certificate
 
 # Extract tar.gz
-RUN tar -xzf temp.tar.gz
+#RUN tar -xzf temp.tar.gz
 
 # Copy header
 # RUN mv include/* /setup/usr/include/
@@ -33,7 +36,7 @@ RUN tar -xzf temp.tar.gz
 #    else exit 1; fi
 
 # Copy rules
-RUN cp 88-mvusb.rules /setup/etc/udev/rules.d/88-mvusb.rules
+#RUN cp 88-mvusb.rules /setup/etc/udev/rules.d/88-mvusb.rules
 
 # Use busybox as container
 FROM busybox:latest
