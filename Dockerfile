@@ -4,19 +4,8 @@ FROM ubuntu:latest AS build
 # linux/amd64 or linux/arm64
 ARG TARGETPLATFORM
 
-# Install file
-ARG URL=https://www.mindvision.com.cn/wp-content/uploads/2023/08/linuxSDK_V2.1.0.37.tar.gz
-
 # Prepare install directories
 RUN mkdir -p /setup/usr/include /setup/lib /setup/etc/udev/rules.d
-
-RUN apt-get update && apt-get install -y \
-  curl \
-  && rm -rf /var/lib/apt/lists/*
-  
-RUN curl -o temp.tar.gz ${URL}
-RUN touch test
-RUN cp test abc
 
 # Install dependencies
 #RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
@@ -28,8 +17,9 @@ RUN cp test abc
 #RUN wget -O temp.tar.gz ${URL} --no-check-certificate
 
 # Extract tar.gz
-#RUN tar -xzf temp.tar.gz
+RUN tar -xzf linuxSDK_V2.1.0.37.tar.gz
 
+RUN ls -l .
 # Copy header
 # RUN mv include/* /setup/usr/include/
 
