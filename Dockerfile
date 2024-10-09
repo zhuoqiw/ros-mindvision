@@ -33,7 +33,7 @@ RUN tar -xzf temp.tar.gz
 #    else exit 1; fi
 
 # Copy rules
-# RUN cp 88-mvusb.rules /setup/etc/udev/rules.d/
+RUN cp 88-mvusb.rules /setup/etc/udev/rules.d/88-mvusb.rules
 
 # Use busybox as container
 FROM busybox:latest
