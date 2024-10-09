@@ -26,14 +26,14 @@ RUN tar -xzf temp.tar.gz
 # RUN mv include/* /setup/usr/include/
 
 # Copy so
-RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-    mv lib/x64/libMVSDK.so /setup/lib/; \
-    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-    mv lib/arm64/libMVSDK.so /setup/lib/; \
-    else exit 1; fi
+#RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+#    mv lib/x64/libMVSDK.so /setup/lib/; \
+#    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+#    mv lib/arm64/libMVSDK.so /setup/lib/; \
+#    else exit 1; fi
 
 # Copy rules
-RUN mv *-mvusb.rules /setup/etc/udev/rules.d/
+RUN cp 88-mvusb.rules /setup/etc/udev/rules.d/
 
 # Use busybox as container
 FROM busybox:latest
