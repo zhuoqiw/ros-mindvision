@@ -7,6 +7,9 @@ ARG TARGETPLATFORM
 # Copy install file from build context into image
 COPY linuxSDK_V2.1.0.37.tar.gz install.tar.gz
 
+RUN apt-get update \
+  && rm -rf /var/lib/apt/lists/*
+
 # Prepare install directories
 RUN mkdir -p /setup/usr/include /setup/lib /setup/etc/udev/rules.d
 
