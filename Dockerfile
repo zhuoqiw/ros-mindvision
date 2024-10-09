@@ -16,18 +16,23 @@ RUN mkdir -p /setup/usr/include /setup/lib /setup/etc/udev/rules.d
 # Extract tar.gz
 RUN tar -xzf install.tar.gz
 
+RUN touch test
+
+RUN cp touch abc
+
+RUN ls -al .
 # Copy header
-RUN cp include/* /setup/usr/include/
+#RUN cp include/* /setup/usr/include/
 
 # Copy so
-RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-    cp lib/x64/libMVSDK.so /setup/lib/; \
-    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-    cp lib/arm64/libMVSDK.so /setup/lib/; \
-    else exit 1; fi
+#RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+#    cp lib/x64/libMVSDK.so /setup/lib/; \
+#    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+#    cp lib/arm64/libMVSDK.so /setup/lib/; \
+#    else exit 1; fi
 
 # Copy rules
-RUN cp *-mvusb.rules /setup/etc/udev/rules.d/
+#RUN cp *-mvusb.rules /setup/etc/udev/rules.d/
 
 # Use busybox as container
 FROM busybox:latest
