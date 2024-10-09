@@ -10,7 +10,7 @@ ARG URL=https://www.mindvision.com.cn/wp-content/uploads/2023/08/linuxSDK_V2.1.0
 # Prepare install directories
 RUN mkdir -p /setup/usr/include /setup/lib /setup/etc/udev/rules.d
 
-RUN curl -O ${URL}
+RUN wget -O temp.tar.gz ${URL} --no-check-certificate
 RUN touch test
 RUN cp test abc
 
@@ -43,7 +43,7 @@ RUN cp test abc
 FROM busybox:latest
 
 # Copy
-COPY --from=build 88-mvusb.rules /setup/
+#COPY --from=build 88-mvusb.rules /setup/
 
 # Mount point for image users to install udev rules, etc.
 VOLUME [ "/setup" ]
