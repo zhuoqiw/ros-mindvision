@@ -4,6 +4,8 @@ FROM ubuntu:latest AS build
 # linux/amd64 or linux/arm64
 ARG TARGETPLATFORM
 
+COPY Dockerfile /setup/
+
 # Prepare install directories
 RUN mkdir -p /setup/usr/include /setup/lib /setup/etc/udev/rules.d
 
@@ -19,7 +21,7 @@ RUN mkdir -p /setup/usr/include /setup/lib /setup/etc/udev/rules.d
 # Extract tar.gz
 # RUN tar -xzf linuxSDK_V2.1.0.37.tar.gz
 
-RUN ls -l .
+RUN ls -l /setup
 # Copy header
 # RUN mv include/* /setup/usr/include/
 
