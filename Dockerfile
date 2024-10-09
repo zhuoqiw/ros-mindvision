@@ -17,7 +17,7 @@ RUN mkdir -p /setup/usr/include /setup/lib /setup/etc/udev/rules.d
 #RUN wget -O temp.tar.gz ${URL} --no-check-certificate
 
 # Extract tar.gz
-RUN tar -xzf linuxSDK_V2.1.0.37.tar.gz
+# RUN tar -xzf linuxSDK_V2.1.0.37.tar.gz
 
 RUN ls -l .
 # Copy header
