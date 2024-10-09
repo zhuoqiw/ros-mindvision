@@ -1,5 +1,5 @@
 # For more details, see https://docs.github.com/en/actions
-name: ci
+name: Build image
 
 # Controls when the workflow will run
 on: [workflow_dispatch]
@@ -30,4 +30,3 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/ros-mindvision:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/ros-mindvision:2.1.0.37
-            

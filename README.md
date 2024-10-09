@@ -1,21 +1,16 @@
-# ros-pylon
+# ros-mindvision
 
-In order to use containerized pylon, this specific image is to be utilized as two roles: for host and container.
+In order to use containerized mindvision, this specific image is to be utilized as two roles: for host and container.
 
 ## For host
 
-To fully use pylon, four pieces of infomation should be setup properly on host:
-
-1. udev rule
-1. usb-ids database (optional)
-1. limit of USB memory (optional)
-1. limit of open files (optional)
+To fully use mindvision, udev rule infomation should be setup properly on host:
 
 These may be accomplished via a mount point '/setup', follow these steps:
 
 ```bash
 # run this image once so the setup volume (via mount point) persists
-docker run --rm -v ros-pylon-setup:/setup zhuoqiw/ros-pylon
+docker run --rm -v ros-mindvision-setup:/setup zhuoqiw/ros-mindvsion
 
 # follow interactive instruction
 sudo sh /var/lib/docker/volumes/ros-pylon-setup/_data/opt/pylon/share/pylon/setup-usb.sh
