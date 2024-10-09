@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
   curl \
   && rm -rf /var/lib/apt/lists/*
   
-RUN curl -o temp.tar.gz ${URL} --no-check-certificate
+RUN curl -o temp.tar.gz ${URL}
 RUN touch test
 RUN cp test abc
 
