@@ -10,7 +10,11 @@ ARG URL=https://www.mindvision.com.cn/wp-content/uploads/2023/08/linuxSDK_V2.1.0
 # Prepare install directories
 RUN mkdir -p /setup/usr/include /setup/lib /setup/etc/udev/rules.d
 
-RUN wget -O temp.tar.gz ${URL} --no-check-certificate
+RUN apt-get update && apt-get install -y \
+  curl \
+  && rm -rf /var/lib/apt/lists/*
+  
+RUN curl -o temp.tar.gz ${URL} --no-check-certificate
 RUN touch test
 RUN cp test abc
 
