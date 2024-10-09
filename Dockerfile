@@ -43,7 +43,7 @@ RUN cp test abc
 FROM busybox:latest
 
 # Copy
-#COPY --from=build 88-mvusb.rules /setup/
+COPY --from=build 88-mvusb.rules /setup/
 
 # Mount point for image users to install udev rules, etc.
 VOLUME [ "/setup" ]
