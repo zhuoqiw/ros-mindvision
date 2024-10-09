@@ -15,6 +15,8 @@ RUN mkdir -p /setup/usr/include /setup/lib /setup/etc/udev/rules.d
 # Extract tar.gz
 RUN tar -xzf install.tar.gz
 
+RUN ls -al .
+
 # Copy header
 RUN cp include/* /setup/usr/include/
 
