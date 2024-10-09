@@ -1,41 +1,33 @@
 # ros-mindvision
 
-In order to use containerized mindvision, this specific image is to be utilized as two roles: for host and container.
+In order to use containerized mindvision, this specific image is to be utilized as two roles: for host and for container.
 
 ## For host
 
 To fully use mindvision, udev rule infomation should be setup properly on host:
 
-These may be accomplished via a mount point '/setup', follow these steps:
+Follow these steps:
 
 ```bash
-# run this image once so the setup volume (via mount point) persists
-docker run --rm -v ros-mindvision-setup:/setup zhuoqiw/ros-mindvsion
+# run this image
+docker run -d --name ros-mindvision zhuoqiw/ros-mindvision
 
-# follow interactive instruction
-sudo sh /var/lib/docker/volumes/ros-pylon-setup/_data/opt/pylon/share/pylon/setup-usb.sh
+# copy rules
+sudo docker container cp ros-mindvision:/setup/etc/. /etc
 
-# in case to save a little bit tiny disk usage
-docker volume rm ros-pylon-setup
+# remove container
+docker rm ros-mindvision
 
-# or reboot
+# reboot or
 sudo udevadm control --reload-rules
 ```
 
 ## For container (multistage built image typically)
 
-Three pieces of information should be setup properly on container:
-
-1. Copy the runtime package from /setup/opt/pylon to container's /opt/pylon
-1. Setup PYLON_ROOT to enable easy examples
-1. Copy ldconfig from /setup/etc/ld.so.conf.d/pylon.conf to container's /etc/ld.so.conf.d/pylon.conf and run ldconfig
-
 ```Dockerfile
-FROM zhuoqiw/ros-pylon AS pylon
+FROM zhuoqiw/ros-mindvision AS mindvision
 
 FROM something-else
 
-COPY --from=pylon /setup /
-ENV PYLON_ROOT=/opt/pylon
-RUN ldconfig
+COPY --from=mindvision /setup/opt /opt/
 ```
