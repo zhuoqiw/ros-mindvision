@@ -29,5 +29,5 @@ FROM zhuoqiw/ros-mindvision AS mindvision
 
 FROM something-else
 
-COPY --from=mindvision /setup/opt /opt/
+COPY --from=mindvision setup /
 ```
