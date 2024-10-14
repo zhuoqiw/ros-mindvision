@@ -21,9 +21,9 @@ RUN mv install/include setup/opt/mindvision/include
 
 # Copy so
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-    mv lib/x64 setup/opt/mindvision/lib; \
+    mv install/lib/x64 setup/opt/mindvision/lib; \
     elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-    mv lib/arm64 setup/opt/mindvision/lib; \
+    mv install/lib/arm64 setup/opt/mindvision/lib; \
     else exit 1; fi
 
 # Update ldconfig to client
