@@ -30,7 +30,7 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
 RUN echo "/opt/mindvision/lib" >> setup/etc/ld.so.conf.d/mindvision.conf
 
 # Copy rules
-RUN cp *-mvusb.rules setup/etc/udev/rules.d/
+RUN mv install/*-mvusb.rules setup/etc/udev/rules.d/
 
 # Use busybox as container
 FROM busybox:latest
